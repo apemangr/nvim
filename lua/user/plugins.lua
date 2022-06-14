@@ -41,7 +41,7 @@ return packer.startup(function(use)
 --	--= PLUGINS HERE =--
 
 	use "wbthomason/packer.nvim" -- Have packer manage itself
-
+  use "lunarvim/darkplus.nvim"
 --	--= PlUGINS END =--
 
 
