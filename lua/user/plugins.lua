@@ -40,8 +40,17 @@ return packer.startup(function(use)
 
 --	--= PLUGINS HERE =--
 
-	use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "lunarvim/darkplus.nvim"
+	use "wbthomason/packer.nvim"            -- Have packer manage itself
+  use "lunarvim/darkplus.nvim"            -- Colorscheme
+  use "neovim/nvim-lspconfig"             -- Enable LSP
+  use "williamboman/nvim-lsp-installer"   -- Auto-install LSP servers
+  use "hrsh7th/cmp-nvim-lsp"              -- LSP Completion
+  use "hrsh7th/cmp-buffer"                -- Buffer Completion
+  use "hrsh7th/cmp-path"                  -- Path Completion
+  use "hrsh7th/cmp-cmdline"               -- Command-line Completion
+  use "hrsh7th/nvim-cmp"                  -- Completion Plugin
+  use "L3MON4D3/LuaSnip"                  -- Snippet Engine
+
 --	--= PlUGINS END =--
 
 
