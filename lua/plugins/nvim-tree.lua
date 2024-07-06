@@ -3,6 +3,9 @@ return{
     keys = {{"<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree"}},
     config =  function()
         require("nvim-tree").setup{
+            view = {
+                preserve_window_proportions = true,
+            },
             git = {
                 enable = false,
                 ignore = false,

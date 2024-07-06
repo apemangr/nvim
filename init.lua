@@ -17,4 +17,5 @@ vim.g.loaded_remote_plugins = 1
 
 require("custom.keymaps")
 require("custom.config")
+require("custom.autocommands")
 require("custom.lazy")
