@@ -3,6 +3,7 @@ vim.g.maplocalleader = "\\"
 vim.o.number = true          
 vim.o.relativenumber = false 
 vim.opt.fillchars:append('eob: ')
+vim.opt.conceallevel = 2
 vim.o.clipboard = "unnamedplus"
 vim.o.hlsearch = true        
 vim.o.incsearch = true       
