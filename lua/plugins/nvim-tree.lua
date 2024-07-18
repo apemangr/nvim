@@ -33,8 +33,8 @@ return{
                     },
                     glyphs = {
                         folder = {
-                            arrow_closed = ">",
-                            arrow_open = "v",
+                            arrow_closed = "▶",
+                            arrow_open = "▽",
                             default = "F",
                             open = "F",
                             empty = "F",

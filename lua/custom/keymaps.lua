@@ -19,8 +19,10 @@ vim.keymap.set("n", "<A-j>", "<Esc>:m .+1<CR>")
 vim.keymap.set("n", "<A-k>", "<Esc>:m .-2<CR>")
 
 -- Move between buffers
-vim.keymap.set("n", "<leader>l", "<CMD>bnext<CR>")
-vim.keymap.set("n", "<leader>h", "<CMD>bprev<CR>")
+--vim.keymap.set("n", "<leader>l", "<CMD>bnext<CR>")
+vim.keymap.set("n", "<leader>l", "<CMD>BufferLineCycleNext<CR>")
+--vim.keymap.set("n", "<leader>h", "<CMD>bprev<CR>")
+vim.keymap.set("n", "<leader>h", "<CMD>BufferLineCyclePrev<CR>")
 vim.keymap.set("n", "<leader>c", "<CMD>bp<bar>sp<bar>bn<bar>bd<CR>")
 
 ---- Visual ----

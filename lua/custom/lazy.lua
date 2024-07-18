@@ -20,6 +20,8 @@ require("lazy").setup({
     spec = {
         {import = "plugins"}
     },
-    install = {colorscheme = {"habamax"}},
-    checker = {enabled = true}
+    news = {lazyvim = false},
+    change_detection = {notify = false},
+    install = {colorscheme = {"retrobox"}},
+    checker = {enabled = false}
 })

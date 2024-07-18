@@ -1,9 +1,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.o.number = true          
-vim.o.relativenumber = false 
 vim.opt.fillchars:append('eob: ')
 vim.opt.conceallevel = 2
+vim.opt.shada = ""
+vim.o.relativenumber = false 
 vim.o.clipboard = "unnamedplus"
 vim.o.hlsearch = true        
 vim.o.incsearch = true       
@@ -14,4 +15,6 @@ vim.o.smartindent = true
 vim.o.wrap = false           
 vim.o.termguicolors = true   
 vim.o.scrolloff = 8          
-vim.cmd('colorscheme lunaperche')
+vim.o.fileencoding = "utf-8"
+vim.o.encoding = "utf-8"
+vim.o.laststatus = 0
