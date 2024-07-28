@@ -1,6 +1,6 @@
 vim.loader.enable()
-vim.g.loaded_matchparen = 1
-vim.g.loaded_matchit = 1
+--vim.g.loaded_matchparen = 1
+--vim.g.loaded_matchit = 1
 vim.g.loaded_logiPat = 1
 vim.g.loaded_rrhelper = 1
 vim.g.loaded_tarPlugin = 1
@@ -13,7 +13,22 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_tutor_mode_plugin = 1
 vim.g.loaded_remote_plugins = 1
-require("custom.keymaps")
+
+
+
+
+vim.opt.shell = "powershell.exe"
+vim.opt.shellxquote = ""
+
+vim.cmd([[
+let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
+let &shellquote = ''
+let &shellpipe = '| Out-File -Encoding UTF8 %s'
+let &shellredir = '| Out-File -Encoding UTF8 %s'
+]])
+
+
 require("custom.config")
+require("custom.keymaps")
 require("custom.autocommands")
 require("custom.lazy")

@@ -1,15 +1,16 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = ","
 vim.o.number = true          
 vim.opt.fillchars:append('eob: ')
 vim.opt.conceallevel = 2
 vim.opt.shada = ""
-vim.o.relativenumber = false 
+vim.o.relativenumber = true 
 vim.o.clipboard = "unnamedplus"
 vim.o.hlsearch = true        
 vim.o.incsearch = true       
 vim.o.tabstop = 4            
 vim.o.shiftwidth = 4         
+vim.o.signcolumn = "yes"
 vim.o.expandtab = true       
 vim.o.smartindent = true     
 vim.o.wrap = false           
@@ -17,4 +18,5 @@ vim.o.termguicolors = true
 vim.o.scrolloff = 8          
 vim.o.fileencoding = "utf-8"
 vim.o.encoding = "utf-8"
-vim.o.laststatus = 0
+vim.o.laststatus = 3
+vim.opt.swapfile = false

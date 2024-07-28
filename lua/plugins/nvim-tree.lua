@@ -17,6 +17,7 @@ return{
             },
             renderer = {
                 group_empty = true,
+                root_folder_label = false,
                 indent_markers = {
                     enable = true,
                     icons = {
@@ -28,19 +29,20 @@ return{
                 },
                 icons = {
                     show = {
-                        file = false,
+                        file = true, 
                         git = false,
                     },
                     glyphs = {
+                        default = "📃",
                         folder = {
                             arrow_closed = "▶",
                             arrow_open = "▽",
-                            default = "F",
-                            open = "F",
-                            empty = "F",
-                            empty_open = "F",
-                            symlink = "F",
-                            symlink_open = "F"
+                            default = "📁",
+                            open = "📂",
+                            empty = "📁",
+                            empty_open = "📂",
+                            symlink = "📁",
+                            symlink_open = "📂"
                         }
                     }
                 }
