@@ -17,9 +17,16 @@ return {
                     -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
                 end,
             },
+            formatting = {
+                expandable_indicator = true,
+                fields = { 'abbr', 'kind', 'menu'},
+                format = function(entry, vim_item)
+                    vim_item.menu = ''
+                    return vim_item
+                end
+            },
             window = {
-                -- completion = cmp.config.window.bordered(),
-                -- documentation = cmp.config.window.bordered(),
+               -- Optionally configure other windows if needed
             },
             mapping = cmp.mapping.preset.insert({
                 ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -38,5 +45,5 @@ return {
             })
         })
     end
-
 }
+
