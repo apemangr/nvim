@@ -18,5 +18,3 @@ vim.api.nvim_create_autocmd("VimEnter", {
         vim.api.nvim_set_hl(0, 'BufferLineOffsetSeparator', {fg = '#181818', bg = '#181818'})
     end
 })
-
-

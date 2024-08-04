@@ -22,28 +22,26 @@ return {
                 end,
             },
             formatting = {
-
                 fields = {'kind', 'abbr', 'menu'},
                 expandable_indicator = true,
                 format = lspkind.cmp_format({
                     mode = 'text_symbol',
                     maxwidth = 40,
                     ellipsis_char = '...',
-                    show_labelDetails = false,
+                    show_labelDetails = true,
                     before = function (_, vim_item)
                         local kind = vim_item.kind
-                        vim_item.kind = lspkind.presets.default[vim_item.kind] or " "
+                        vim_item.kind = lspkind.presets.codicons[vim_item.kind] or " "
                         vim_item.menu = kind
-
                         return vim_item
                     end
                 })},
             window = {
                 completion = cmp.config.window.bordered({
-                --    border = "none",
                     side_padding = 1,
                     col_offset = -5,
-                })
+                }),
+                documentation = cmp.config.window.bordered({})
             },
             mapping = cmp.mapping.preset.insert({
                 ['<C-b>'] = cmp.mapping.scroll_docs(-4),

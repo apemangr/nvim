@@ -14,7 +14,7 @@ return {
         templates = {
             folder = "5-Templates",
             date_format = "%d-%B-%Y",
-            time_format = "%H:%M", 
+            time_format = "%H:%M",
         },
         workspaces = {
             {
