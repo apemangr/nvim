@@ -22,6 +22,6 @@ require("lazy").setup({
     },
     news = {lazyvim = false},
     change_detection = {notify = false},
-    install = {colorscheme = {"vscode_modern"}},
+    install = {colorscheme = {"retrobox"}},
     checker = {enabled = false}
 })
