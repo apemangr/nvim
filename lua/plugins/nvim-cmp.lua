@@ -3,6 +3,7 @@ return {
     dependencies = {
         "hrsh7th/cmp-buffer",
         "saadparwaiz1/cmp_luasnip",
+        "onsails/lspkind.nvim",
         {
             "L3MON4D3/LuaSnip",
             version = "v2.*",
@@ -12,30 +13,44 @@ return {
     config = function()
         local cmp = require'cmp'
         local luasnip = require'luasnip'
+        local lspkind = require("lspkind")
+
         cmp.setup({
             snippet = {
-                -- REQUIRED - you must specify a snippet engine
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                    require('luasnip').lsp_expand(args.body) -- For luasnip users.
                 end,
             },
             formatting = {
+
+                fields = {'kind', 'abbr', 'menu'},
                 expandable_indicator = true,
-                fields = { 'abbr', 'kind', 'menu'},
-                format = function(entry, vim_item)
-                    vim_item.menu = ''
-                    return vim_item
-                end
-            },
+                format = lspkind.cmp_format({
+                    mode = 'text_symbol',
+                    maxwidth = 40,
+                    ellipsis_char = '...',
+                    show_labelDetails = false,
+                    before = function (_, vim_item)
+                        local kind = vim_item.kind
+                        vim_item.kind = lspkind.presets.default[vim_item.kind] or " "
+                        vim_item.menu = kind
+
+                        return vim_item
+                    end
+                })},
             window = {
-               -- Optionally configure other windows if needed
+                completion = cmp.config.window.bordered({
+                --    border = "none",
+                    side_padding = 1,
+                    col_offset = -5,
+                })
             },
             mapping = cmp.mapping.preset.insert({
                 ['<C-b>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
                 ['<C-Space>'] = cmp.mapping.complete(),
                 ['<C-e>'] = cmp.mapping.abort(),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                ['<CR>'] = cmp.mapping.confirm({ select = true }),
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
@@ -66,4 +81,3 @@ return {
         })
     end
 }
-

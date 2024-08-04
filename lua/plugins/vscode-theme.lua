@@ -11,6 +11,7 @@ return
         })
         vim.cmd.colorscheme("vscode_modern")
         vim.cmd("hi MatchParen gui=bold guifg=Yellow guibg=NONE")
+        vim.cmd("hi FoldColumn guifg=Gray guibg=NONE")
         vim.api.nvim_set_hl(0, 'Explorer', { fg = '#74dcfe', bg = '#181818' })
     end,
 }
