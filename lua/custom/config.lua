@@ -18,7 +18,7 @@ vim.o.termguicolors = true
 vim.o.scrolloff = 8
 vim.o.fileencoding = "utf-8"
 vim.o.encoding = "utf-8"
-vim.o.laststatus = 3
+vim.o.laststatus = 2
 vim.opt.swapfile = false
 
 -- UFO folding
