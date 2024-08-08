@@ -80,7 +80,7 @@ return {
                 -- configure clangd server
                 lspconfig["clangd"].setup({
                     capabilities = capabilities,
-                    cmd = { "clangd"},
+                    cmd = { "clangd", "--header-insertion=never" },
                 })
             end,
             ["lua_ls"] = function()

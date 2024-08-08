@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 vim.o.number = true
---vim.opt.fillchars:append('eob: ')
 vim.opt.conceallevel = 2
 vim.opt.shada = ""
 vim.o.relativenumber = true
@@ -28,14 +27,7 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
-
--- Term stuff
-vim.opt.shell = "powershell.exe"
-vim.opt.shellxquote = ""
-vim.cmd([[
-let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
-let &shellquote = ''
-let &shellpipe = '| Out-File -Encoding UTF8 %s'
-let &shellredir = '| Out-File -Encoding UTF8 %s'
-]])
-
+-- Neovide
+if vim.g.neovide then
+    vim.o.guifont = "JetBrains Mono:h11:#e-subpixelantialias:#h-none"
+end

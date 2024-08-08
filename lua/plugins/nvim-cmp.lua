@@ -32,18 +32,20 @@ return {
                     show_labelDetails = false,
                     before = function (_, vim_item)
                         local kind = vim_item.kind
-                        vim_item.kind = lspkind.presets.default[vim_item.kind] or " "
+                        vim_item.kind = lspkind.presets.codicons[vim_item.kind] or " "
                         vim_item.menu = kind
-
                         return vim_item
                     end
                 })},
             window = {
                 completion = cmp.config.window.bordered({
-                --    border = "none",
+                    --border = "none",
                     side_padding = 1,
                     col_offset = -5,
-                })
+                }),
+                documentation = cmp.config.window.bordered({
+
+                }),
             },
             mapping = cmp.mapping.preset.insert({
                 ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -71,6 +73,7 @@ return {
                 end, { 'i', 's' }),
             }),
             sources = cmp.config.sources({
+                { name = 'nvim_lsp_signature_help' },
                 { name = 'nvim_lsp' },
                 { name = 'luasnip'},
                 { name = 'obsidian' },
