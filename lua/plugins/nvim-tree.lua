@@ -1,6 +1,7 @@
 return{
     "nvim-tree/nvim-tree.lua",
     dependencies = {"nvim-tree/nvim-web-devicons"},
+    commit = "48d0e82f9434691cc50d970898142a8c084a49d6",
     keys = {{"<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree"}},
     config =  function()
         require("nvim-tree").setup{

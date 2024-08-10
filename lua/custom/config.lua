@@ -19,6 +19,7 @@ vim.o.fileencoding = "utf-8"
 vim.o.encoding = "utf-8"
 vim.o.laststatus = 2
 vim.opt.swapfile = false
+vim.o.guifont = "JetBrains Mono:h10"
 
 -- UFO folding
 vim.o.foldcolumn = "1" -- '0' is not bad
