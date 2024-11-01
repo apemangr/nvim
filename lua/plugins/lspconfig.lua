@@ -63,8 +63,8 @@ return {
         -- Change the Diagnostic symbols in the sign column (gutter)
         -- (not in youtube nvim video)
         --
-        local signs = { Error = " ", Warn = " ", Hint = " 󰠠", Info = " "}
-       for type, icon in pairs(signs) do
+        local signs = { Error = " ", Warn = " ", Hint = " 󰠠", Info = " "}
+        for type, icon in pairs(signs) do
             local hl = "DiagnosticSign" .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
@@ -74,6 +74,30 @@ return {
             function(server_name)
                 lspconfig[server_name].setup({
                     capabilities = capabilities,
+                })
+            end,
+            ["pyright"] = function()
+                lspconfig["pyright"].setup({
+                    capabilities = capabilities,
+                    settings = {
+                        python = {
+                            analysis = {
+                                typeCheckingMode = "basic", -- Cambia a "strict" si lo prefieres
+                                autoSearchPaths = true,
+                                useLibraryCodeForTypes = true,
+                            },
+                        },
+                    },
+                })
+            end,
+            ["basedpyright"] = function()
+                -- configure clangd server
+                lspconfig["basedpyright"].setup({
+                    capabilities = capabilities,
+                    analysis = {
+                        typeCheckingMode = "basic",
+                        useLibraryCodeForTypes = true,
+                    },
                 })
             end,
             ["clangd"] = function()
