@@ -60,10 +60,15 @@ keymap("n", "<leader>(", safe_cprev, { desc = "Quickfix prev seguro" })
 keymap("n", "<leader>fc", "<cmd>cclose<CR>", { desc = "Close Quickfix window" })
 
 
-keymap("v", "<leader>s", function()
+keymap("v", "0", function()
   -- obtener solo la selección
   local search = vim.fn.getreg('v')
   local escaped = vim.fn.escape(search, '/\\')
   vim.cmd("vimgrep /" .. escaped .. "/ **/* | copen")
 end, { desc = "Buscar selección en quickfix" })
+
+
+-- Buffer movement
+keymap("n", "<leader>l", "<cmd>bNext<CR>", { desc = "Move to the next buffer" } )
+keymap("n", "<leader>h", "<cmd>bprevious<CR>", { desc = "Move to the previous buffer" } )
 
