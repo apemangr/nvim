@@ -26,10 +26,11 @@ require("nvim-tree").setup()
 --
 
 vim.pack.add({
-    { src = "https://github.com/nvim-telescope/telescope.nvim" },
+    { src = "https://github.com/nvim-telescope/telescope.nvim", opt = false },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
 })
 
+vim.cmd.packadd("telescope.nvim")
 
 require('telescope').setup {
     defaults = {
@@ -123,3 +124,22 @@ vim.pack.add({
 require("mason").setup({})
 
 -- Mason ends here
+
+
+
+--
+--
+-- Colorscheme: OneDark 
+--
+--
+
+vim.pack.add({
+    { src = "https://github.com/navarasu/onedark.nvim" },
+})
+
+
+require('onedark').setup {
+    style = 'warmer'
+}
+
+require('onedark').load()
