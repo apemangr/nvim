@@ -75,8 +75,8 @@ keymap("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close the current buffer"
 -- Window movement
 keymap("n", "<C-l>", "<C-w>l", { desc = "Move window focus to the right" })
 keymap("n", "<C-h>", "<C-w>h", { desc = "Move window focus to the left" })
-
-
+keymap("t", "<C-l>", "<C-w>l", { desc = "Move window focus to the right" })
+keymap("t", "<C-h>", "<C-w>h", { desc = "Move window focus to the left" })
 
 
 keymap("v", "<leader>t", function()

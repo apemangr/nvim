@@ -2,11 +2,11 @@
 
 
 
---
+------------
 --
 -- Nvim-tree
 --
---
+------------
 
 vim.pack.add({
     { src = "https://github.com/nvim-tree/nvim-tree.lua" },
@@ -19,11 +19,11 @@ require("nvim-tree").setup()
 
 
 
---
+------------
 --
 -- Telescope
 --
---
+------------
 
 vim.pack.add({
     { src = "https://github.com/nvim-telescope/telescope.nvim", opt = false },
@@ -49,11 +49,11 @@ require('telescope').setup {
 
 
 
---
+------------
 --
 -- blink.cmp
 -- 
---
+------------
 
 vim.pack.add({
     { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
@@ -64,28 +64,25 @@ require('blink.cmp').setup({
        signature = { enabled = true },
     keymap = {
         preset = "default",
-        ["<C-space>"] = {},
-        ["<C-p>"] = {},
+        ["<C-space>"] = { "hide" },
         ["<Tab>"] = {},
+        ["<CR>"]  = {"accept", "fallback"},
         ["<S-Tab>"] = {},
         ["<C-y>"] = { "show", "show_documentation", "hide_documentation" },
-        ["<C-n>"] = { "select_and_accept" },
-        ["<C-k>"] = { "select_prev", "fallback" },
-        ["<C-j>"] = { "select_next", "fallback" },
+        ["<C-p>"] = { "select_prev", "fallback" },
+        ["<C-n>"] = { "select_next", "fallback" },
         ["<C-b>"] = { "scroll_documentation_down", "fallback" },
         ["<C-f>"] = { "scroll_documentation_up", "fallback" },
         ["<C-l>"] = { "snippet_forward", "fallback" },
         ["<C-h>"] = { "snippet_backward", "fallback" },
-        -- ["<C-e>"] = { "hide" },
     },
     appearance = {
         use_nvim_cmp_as_default = true,
         nerd_font_variant = "normal",
     },
-
     completion = {
         documentation = {
-            auto_show = true,
+            auto_show = false,
             auto_show_delay_ms = 200,
         },
         menu = {
@@ -111,11 +108,11 @@ require('blink.cmp').setup({
 
 
 
---
+--------
 --
 -- Mason
 --
---
+--------
 
 vim.pack.add({
     { src = "https://github.com/mason-org/mason.nvim" },
@@ -127,11 +124,11 @@ require("mason").setup({})
 
 
 
---
+-----------------------
 --
 -- Colorscheme: OneDark 
 --
---
+-----------------------
 
 vim.pack.add({
     { src = "https://github.com/navarasu/onedark.nvim" },
@@ -139,7 +136,79 @@ vim.pack.add({
 
 
 require('onedark').setup {
-    style = 'warmer'
+    style = 'warmer',
+    highlights = {
+        NvimTreeWinSeparator = { fg = '#232326', bg = '#232326' },
+  }
+
 }
 
 require('onedark').load()
+
+-- Colorscheme: OneDrak ends here
+
+
+
+-----------
+--
+-- Gitsigns
+--
+-----------
+
+vim.pack.add({
+    { src = "https://github.com/lewis6991/gitsigns.nvim" },
+})
+
+require('gitsigns').setup {
+  signs = {
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+  signs_staged = {
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+  signs_staged_enable = true,
+  signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+  numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  watch_gitdir = {
+    follow_files = true
+  },
+  auto_attach = true,
+  attach_to_untracked = false,
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 1000,
+    ignore_whitespace = false,
+    virt_text_priority = 100,
+    use_focus = true,
+  },
+  current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  max_file_length = 40000, -- Disable if file is longer than this (in lines)
+  preview_config = {
+    -- Options passed to nvim_open_win
+    style = 'minimal',
+    relative = 'cursor',
+    row = 0,
+    col = 1
+  },
+}
+
+--- GitSigns ends here
+
+
