@@ -175,7 +175,7 @@ require('gitsigns').setup {
   },
   auto_attach = true,
   attach_to_untracked = false,
-  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame = false, -- Toggle `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
     virt_text = true,
     virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
@@ -213,10 +213,10 @@ require 'nvim-treesitter.install'.compilers = { "clang", "gcc" }
 
 require("nvim-treesitter.configs").setup {
     ensure_installed = 
-        { "lua", "python", "javascript", "typescript", "c", "cpp" }, -- Lenguajes deseados
+        { "lua", "python", "javascript", "typescript", "c", "cpp" },
     highlight = {
         enable = true,  -- activa resaltado de sintaxis
-        additional_vim_regex_highlighting = false, -- evita conflictos con syntax normal
+        additional_vim_regex_highlighting = false,
     },
     indent = { enable = true }, -- indentación automática opcional
     incremental_selection = {
