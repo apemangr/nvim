@@ -1,12 +1,18 @@
--- Plugins config
-
-
-
-------------
+-------------------------------------------------------------------------------
 --
--- Nvim-tree
+--        ########  ##       ##     ##  ######   #### ##    ##  ######  
+--        ##     ## ##       ##     ## ##    ##   ##  ###   ## ##    ##          
+--        ##     ## ##       ##     ## ##         ##  ####  ## ##       
+--        ########  ##       ##     ## ##   ####  ##  ## ## ##  ######  
+--        ##        ##       ##     ## ##    ##   ##  ##  ####       ## 
+--        ##        ##       ##     ## ##    ##   ##  ##   ### ##    ## 
+--        ##        ########  #######   ######   #### ##    ##  ######  
 --
-------------
+-------------------------------------------------------------------------------
+
+
+
+-- {{ Nvim-Tree ---------------------------------------------------------------
 
 vim.pack.add({
     { src = "https://github.com/nvim-tree/nvim-tree.lua" },
@@ -15,15 +21,11 @@ vim.pack.add({
 
 require("nvim-tree").setup()
 
--- Nvimtree ends here
+-- }} Nvim-Tree ends here -----------------------------------------------------
 
 
 
-------------
---
--- Telescope
---
-------------
+-- {{ Telescope ---------------------------------------------------------------
 
 vim.pack.add({
     { src = "https://github.com/nvim-telescope/telescope.nvim", opt = false },
@@ -45,18 +47,17 @@ require('telescope').setup {
     }
 }
 
--- Telescope ends here
+-- }} Telescope ends here -----------------------------------------------------
 
 
 
-------------
---
--- blink.cmp
--- 
-------------
+-- {{ blink.cmp ---------------------------------------------------------------
 
 vim.pack.add({
-    { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
+    { 
+        src = "https://github.com/saghen/blink.cmp",
+        version = vim.version.range("^1") 
+    },
 })
 
 require('blink.cmp').setup({
@@ -89,8 +90,8 @@ require('blink.cmp').setup({
             auto_show = true,
         },
         trigger = {
-            show_on_insert = true, -- Muestra el menú al entrar en modo de inserción
-            show_on_keyword = true, -- Muestra el menú al escribir una palabra clave
+            show_on_insert = false,
+            show_on_keyword = true,
         },
     },
 
@@ -104,15 +105,11 @@ require('blink.cmp').setup({
     sources = { default = { "lsp", "buffer" } }
 })
 
--- blink.cmp ends here
+-- }} blink.cmp ends here -----------------------------------------------------
 
 
 
---------
---
--- Mason
---
---------
+-- {{ Mason -------------------------------------------------------------------
 
 vim.pack.add({
     { src = "https://github.com/mason-org/mason.nvim" },
@@ -120,15 +117,11 @@ vim.pack.add({
 
 require("mason").setup({})
 
--- Mason ends here
+-- }} Mason ends here ---------------------------------------------------------
 
 
 
------------------------
---
--- Colorscheme: OneDark 
---
------------------------
+-- {{ Colorscheme: OneDark ----------------------------------------------------
 
 vim.pack.add({
     { src = "https://github.com/navarasu/onedark.nvim" },
@@ -145,15 +138,11 @@ require('onedark').setup {
 
 require('onedark').load()
 
--- Colorscheme: OneDrak ends here
+-- }} Colorscheme: OneDrak ends here ------------------------------------------
 
 
 
------------
---
--- Gitsigns
---
------------
+-- {{ Gitsigns ----------------------------------------------------------------
 
 vim.pack.add({
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
@@ -209,6 +198,38 @@ require('gitsigns').setup {
   },
 }
 
---- GitSigns ends here
+--- }} GitSigns ends here -----------------------------------------------------
+   
 
 
+--- {{ Treesitter -------------------------------------------------------------
+
+vim.pack.add({
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+})
+
+require 'nvim-treesitter.install'.compilers = { "clang", "gcc" }
+
+
+require("nvim-treesitter.configs").setup {
+    ensure_installed = 
+        { "lua", "python", "javascript", "typescript", "c", "cpp" }, -- Lenguajes deseados
+    highlight = {
+        enable = true,  -- activa resaltado de sintaxis
+        additional_vim_regex_highlighting = false, -- evita conflictos con syntax normal
+    },
+    indent = { enable = true }, -- indentación automática opcional
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm",
+        },
+    },
+}
+
+vim.cmd.packadd("nvim-treesitter")
+
+--- }} Treesitter ends here ---------------------------------------------------
