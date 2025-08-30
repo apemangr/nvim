@@ -1,16 +1,14 @@
-------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 --
+--               ##    ## ######## ##    ## ##     ##    ###    ########   ######
+--               ##   ##  ##        ##  ##  ###   ###   ## ##   ##     ## ##    ##
+--               ##  ##   ##         ####   #### ####  ##   ##  ##     ## ##
+--               #####    ######      ##    ## ### ## ##     ## ########   ######
+--               ##  ##   ##          ##    ##     ## ######### ##              ##
+--               ##   ##  ##          ##    ##     ## ##     ## ##        ##    ##
+--               ##    ## ########    ##    ##     ## ##     ## ##         ######
 --
---      ##    ## ######## ##    ## ##     ##    ###    ########   ######
---      ##   ##  ##        ##  ##  ###   ###   ## ##   ##     ## ##    ##
---      ##  ##   ##         ####   #### ####  ##   ##  ##     ## ##
---      #####    ######      ##    ## ### ## ##     ## ########   ######
---      ##  ##   ##          ##    ##     ## ######### ##              ##
---      ##   ##  ##          ##    ##     ## ##     ## ##        ##    ##
---      ##    ## ########    ##    ##     ## ##     ## ##         ######
---
---
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 
 -- ~/.config/nvim-new/plugin/keymaps.lua
 local keymap = vim.keymap.set
@@ -107,26 +105,29 @@ keymap("v", "<leader>t", function()
 	end
 
 	local stdout = {}
-	local job = vim.fn.jobstart({ "rg", "--vimgrep", "--no-heading", "--smart-case", "--hidden", search, "." }, {
-		stdout_buffered = true,
-		on_stdout = function(_, data)
-			if data then
-				for _, l in ipairs(data) do
-					if l ~= "" then
-						table.insert(stdout, l)
+	local job = vim.fn.jobstart(
+		{ "rg", "--vimgrep", "--no-heading", "--smart-case", "--hidden", search, "." },
+		{
+			stdout_buffered = true,
+			on_stdout = function(_, data)
+				if data then
+					for _, l in ipairs(data) do
+						if l ~= "" then
+							table.insert(stdout, l)
+						end
 					end
 				end
-			end
-		end,
-		on_exit = vim.schedule_wrap(function(_, code)
-			if code ~= 0 and #stdout == 0 then
-				print("No se encontraron resultados")
-				return
-			end
-			vim.fn.setqflist({}, " ", { title = "Búsqueda rápida (rg)", lines = stdout })
-			vim.cmd("copen")
-		end),
-	})
+			end,
+			on_exit = vim.schedule_wrap(function(_, code)
+				if code ~= 0 and #stdout == 0 then
+					print("No se encontraron resultados")
+					return
+				end
+				vim.fn.setqflist({}, " ", { title = "Búsqueda rápida (rg)", lines = stdout })
+				vim.cmd("copen")
+			end),
+		}
+	)
 
 	if job <= 0 then
 		print("jobstart falló")
