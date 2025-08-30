@@ -13,19 +13,26 @@
 -- {{ Nvim-Tree -----------------------------------------------------------------------------------
 
 vim.pack.add({
-	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
-	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
+	{ src = "https://github.com/nvim-tree/nvim-tree.lua", confirm = false },
+	{ src = "https://github.com/nvim-tree/nvim-web-devicons", confirm = false },
 })
 
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+	sync_root_with_cwd = true,
+	respect_buf_cwd = true,
+	update_focused_file = {
+		enable = true,
+		update_root = true,
+	},
+})
 
 -- }} Nvim-Tree ends here -------------------------------------------------------------------------
 
 -- {{ Telescope -----------------------------------------------------------------------------------
 
 vim.pack.add({
-	{ src = "https://github.com/nvim-telescope/telescope.nvim", opt = false },
-	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim", opt = false, confirm = false },
+	{ src = "https://github.com/nvim-lua/plenary.nvim", confirm = false },
 })
 
 vim.cmd.packadd("telescope.nvim")
@@ -51,6 +58,7 @@ vim.pack.add({
 	{
 		src = "https://github.com/saghen/blink.cmp",
 		version = vim.version.range("^1"),
+		confirm = false,
 	},
 })
 
@@ -104,7 +112,7 @@ require("blink.cmp").setup({
 -- {{ Mason ---------------------------------------------------------------------------------------
 
 vim.pack.add({
-	{ src = "https://github.com/mason-org/mason.nvim" },
+	{ src = "https://github.com/mason-org/mason.nvim", confirm = false },
 })
 
 require("mason").setup({})
@@ -114,7 +122,7 @@ require("mason").setup({})
 -- {{ Colorscheme: OneDark ------------------------------------------------------------------------
 
 vim.pack.add({
-	{ src = "https://github.com/navarasu/onedark.nvim" },
+	{ src = "https://github.com/navarasu/onedark.nvim", confirm = false },
 })
 
 require("onedark").setup({
@@ -131,7 +139,7 @@ require("onedark").load()
 -- {{ Gitsigns ------------------------------------------------------------------------------------
 
 vim.pack.add({
-	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+	{ src = "https://github.com/lewis6991/gitsigns.nvim", confirm = false },
 })
 
 require("gitsigns").setup({
@@ -189,7 +197,7 @@ require("gitsigns").setup({
 -- {{ Treesitter ----------------------------------------------------------------------------------
 
 vim.pack.add({
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", confirm = false },
 })
 
 require("nvim-treesitter.install").compilers = { "clang", "gcc" }
@@ -227,7 +235,7 @@ vim.cmd.packadd("nvim-treesitter")
 -- {{ Conform -------------------------------------------------------------------------------------
 
 vim.pack.add({
-	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/stevearc/conform.nvim", confirm = false },
 })
 
 require("conform").setup({
@@ -246,6 +254,9 @@ require("conform").setup({
 		clang_format = {
 			prepend_args = { "--style=file" },
 		},
+		stylua = {
+			prepend_args = { "--column-width", "100" },
+		},
 	},
 })
 
@@ -256,7 +267,11 @@ vim.cmd.packadd("conform.nvim")
 -- {{ nvim-treesitter-context ---------------------------------------------------------------------
 
 vim.pack.add({
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context", on_bufread = true },
+	{
+		src = "https://github.com/nvim-treesitter/nvim-treesitter-context",
+		on_bufread = true,
+		confirm = false,
+	},
 })
 
 require("treesitter-context").setup({

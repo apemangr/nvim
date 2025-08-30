@@ -40,13 +40,15 @@ vim.g.loaded_netrwPlugin = 1
 vim.cmd.filetype("plugin indent on")
 
 vim.o.grepprg = "rg --vimgrep --no-heading --smart-case --hidden"
--- init.lua: configurar pwsh como shell para Neovim (Windows)
-vim.opt.shell = "pwsh" -- o "powershell" si no tienes pwsh
-vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
-vim.opt.shellredir = ">$TEMP\\nvim_out.txt 2>&1" -- opcional, usado por algunos comandos
--- IMPORTANTE: Neovim reemplaza %s en shellpipe por la ruta temporal
-vim.opt.shellpipe = "2>&1 | Tee-Object -FilePath %s -Encoding UTF8"
-vim.opt.shellquote = ""
-vim.opt.shellxquote = ""
 
-vim.g.python3_host_prog = "C:\\Users\\guill\\AppData\\Local\\Programs\\Python\\Python310\\python.exe"
+if vim.fn.has("win32") == 1 then
+	vim.opt.shell = "pwsh" -- o "powershell" si no tienes pwsh
+	vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+	vim.opt.shellredir = ">$TEMP\\nvim_out.txt 2>&1" -- opcional, usado por algunos comandos
+	vim.opt.shellpipe = "2>&1 | Tee-Object -FilePath %s -Encoding UTF8"
+	vim.opt.shellquote = ""
+	vim.opt.shellxquote = ""
+
+	vim.g.python3_host_prog =
+		"C:\\Users\\guill\\AppData\\Local\\Programs\\Python\\Python310\\python.exe"
+end
