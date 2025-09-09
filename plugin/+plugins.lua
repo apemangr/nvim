@@ -104,7 +104,8 @@ require("blink.cmp").setup({
 		},
 	},
 
-	sources = { default = { "lsp", "buffer" } },
+	sources = { default = { "lsp", "buffer", "snippets" } },
+	snippets = { preset = "luasnip" },
 })
 
 -- }} blink.cmp ends here -------------------------------------------------------------------------
@@ -245,11 +246,6 @@ require("conform").setup({
 		lua = { "stylua" },
 		python = { "isort", "black" },
 	},
-	format_on_save = {
-		-- These options will be passed to conform.format()
-		timeout_ms = 500,
-		lsp_format = "fallback",
-	},
 	formatters = {
 		clang_format = {
 			prepend_args = { "--style=file" },
@@ -291,3 +287,73 @@ require("treesitter-context").setup({
 })
 
 -- }} nvim-treesitter-context ends here -----------------------------------------------------------
+
+-- {{ Luasnip -------------------------------------------------------------------------------------
+
+vim.pack.add({
+	{ src = "https://github.com/L3MON4D3/LuaSnip" },
+})
+
+vim.cmd.packadd("LuaSnip")
+
+local luasnip = require("luasnip")
+
+luasnip.config.set_config({
+	history = true,
+	delete_check_events = "TextChanged",
+	updateevents = "TextChanged,TextChangedI",
+	region_check_events = "CursorMoved,CursorMovedI",
+	store_selection_keys = "<Tab>",
+})
+
+-- Configurar el directorio de snippets
+local snippet_dir = vim.fn.stdpath("config") .. "/snippets"
+
+-- Cargar snippets
+require("luasnip.loaders.from_lua").lazy_load({ paths = snippet_dir })
+
+-- mappings coherentes con tu blink.cmp (<C-l> forward, <C-h> back)
+vim.keymap.set({ "i", "s" }, "<C-l>", function()
+	if luasnip.expand_or_jumpable() then
+		luasnip.expand_or_jump()
+	end
+end, { silent = true })
+
+vim.keymap.set({ "i", "s" }, "<C-h>", function()
+	if luasnip.jumpable(-1) then
+		luasnip.jump(-1)
+	end
+end, { silent = true })
+
+-- }} Luasnip ends here ---------------------------------------------------------------------------
+
+-- {{ Which-Key -----------------------------------------------------------------------------------
+
+vim.pack.add({
+	{ src = "https://github.com/folke/which-key.nvim", confirm = false },
+})
+
+require("which-key").setup({
+	preset = "modern",
+	delay = function(ctx)
+		return ctx.plugin and 0 or 500
+	end,
+	filter = function(mapping)
+		-- example to exclude mappings without a description
+		return mapping.desc and mapping.desc ~= ""
+	end,
+	spec = {
+		{ "<leader>f", group = "find" },
+		{ "<leader>g", group = "git" },
+		{ "<leader>l", group = "lsp" },
+		{ "<leader>t", group = "toggle" },
+		{ "<leader>w", group = "window" },
+	},
+	icons = {
+		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+		separator = "➜", -- symbol used between a key and it's label
+		group = "+", -- symbol prepended to a group
+	},
+})
+
+-- }} Which-Key ends here -------------------------------------------------------------------------
