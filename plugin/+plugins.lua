@@ -248,7 +248,11 @@ require("conform").setup({
 	},
 	formatters = {
 		clang_format = {
-			prepend_args = { "--style=file" },
+			prepend_args = {
+				"--style=file",
+				"--assume-filename",
+				vim.fn.stdpath("config") .. "/.clang-format",
+			},
 		},
 		stylua = {
 			prepend_args = { "--column-width", "100" },
@@ -357,3 +361,44 @@ require("which-key").setup({
 })
 
 -- }} Which-Key ends here -------------------------------------------------------------------------
+
+-- {{ focus.nvim ----------------------------------------------------------------------------------
+
+vim.pack.add({
+	{ src = "https://github.com/nvim-focus/focus.nvim" },
+})
+
+require("focus").setup({
+    enable = true, -- Enable module
+    commands = true, -- Create Focus commands
+    autoresize = {
+        enable = true, -- Enable or disable auto-resizing of splits
+        width = 108, -- Force width for the focused window
+        height = 0, -- Force height for the focused window
+        minwidth = 30, -- Force minimum width for the unfocused window
+        minheight = 0, -- Force minimum height for the unfocused window
+        focusedwindow_minwidth = 0, --Force minimum width for the focused window
+        focusedwindow_minheight = 0, --Force minimum height for the focused window
+        height_quickfix = 10, -- Set the height of quickfix panel
+    },
+    split = {
+        bufnew = false, -- Create blank buffer for new split windows
+        tmux = false, -- Create tmux splits instead of neovim splits
+    },
+    ui = {
+        number = true, -- Display line numbers in the focussed window only
+        relativenumber = true, -- Display relative line numbers in the focussed window only
+        hybridnumber = true, -- Display hybrid line numbers in the focussed window only
+        absolutenumber_unfocussed = true, -- Preserve absolute numbers in the unfocussed windows
+
+        cursorline = true, -- Display a cursorline in the focussed window only
+        cursorcolumn = false, -- Display cursorcolumn in the focussed window only
+        colorcolumn = {
+            enable = false, -- Display colorcolumn in the foccused window only
+            list = '+1', -- Set the comma-saperated list for the colorcolumn
+        },
+        signcolumn = false, -- Display signcolumn in the focussed window only
+        winhighlight = true, -- Auto highlighting for focussed/unfocussed windows
+    }
+})
+-- }} focus.nvim ends here ------------------------------------------------------------------------

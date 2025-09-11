@@ -1,0 +1,38 @@
+# Config compatible con clang-format 21.1.0
+
+BasedOnStyle: Microsoft
+
+IndentWidth: 4
+ColumnLimit: 100
+SortIncludes: false
+
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: false
+  PadOperators: false
+
+AlignConsecutiveDeclarations:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: false
+
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: false
+
+AllowAllArgumentsOnNextLine: false
+
+BinPackParameters: false      # rompe parámetros en funciones
+BinPackArguments: false       # rompe argumentos en llamadas
+AllowAllParametersOfDeclarationOnNextLine: false
+
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+#
+# Cpp11BracedListStyle: false
+# BreakBeforeBraces: Custom
+# BraceWrapping:
+#   AfterEquals: true
+
